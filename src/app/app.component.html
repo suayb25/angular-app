@@ -1,4 +1,37 @@
-<h1>Welcome to our project</h1>
-<p>{{title}}</p> 
-<p>Welcome to our website {{name}}</p> 
-<input type="text" [(ngModel)]="name">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5 align-items-center">
+        <h3 class="bg-primary text-white p-3">
+            [{{getName()}}]AngularApp
+          </h3>
+          <div class="input-group">
+            <input type="text" class="form-control">
+            <div class="input-group-append">
+        
+              <button class="btn btn-primary">Add</button>
+            </div>
+        
+          </div>
+
+          <table class="table table-striped bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of getItems(); let i= index" >
+                <td>{{i+1}}</td>
+                <td>{{item.description}}</td>
+                <td  [ngSwitch]="item.action">
+                <span *ngSwitchCase="true">Yes</span>
+                <span *ngSwitchCase="false">False</span>
+               </td>
+            </tr>
+          </tbody>
+          </table>
+    </div>
+  </div>
+</div>
