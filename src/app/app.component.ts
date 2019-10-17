@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Model } from './model';
+import { Model, Item } from './model';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,6 @@ export class AppComponent {
   return this.model.user;
  }
  getItems(){
-   return this.model.items;
+   return this.model.items.filter(Item =>!Item.action) ;
  }
 }
