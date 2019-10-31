@@ -14,6 +14,8 @@ export class ShopComponent{
     public selectedCategory:Category=null;
     public productsPerPage=3;
     public selectedPage = 1;
+    public selectedProducts:Product[]=[];
+
     constructor(private productRepository:ProductRepository,
         private categoryRepository:CategoryRepository,
         private cart:Cart,
@@ -21,7 +23,8 @@ export class ShopComponent{
 
     get products():Product[]{
         let index = (this.selectedPage-1)*this.productsPerPage;
-        return this.productRepository.getProducts(this.selectedCategory)
+        this.selectedProducts = this.productRepository.getProducts(this.selectedCategory);
+        return this.selectedProducts
             .slice(index, this.productsPerPage + index);
     }
 
@@ -33,6 +36,11 @@ export class ShopComponent{
 
     changePage(p:number){
         this.selectedPage = p;
+    }
+
+    changePageSize(size:number){
+        this.productsPerPage = size;
+        this.changePage(1);
     }
 
     get categories():Category[]{
