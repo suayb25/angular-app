@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+
   @Input() products:Product [] = []
+  selectedProduct:Product = null;
+
   constructor(private cart:Cart,
     private router:Router) { }
 
@@ -19,6 +22,13 @@ export class ProductListComponent implements OnInit {
   addProductToCart(product:Product){
     this.cart.addItem(product);
     this.router.navigateByUrl('/cart');
+}
+
+  displayDetails(product: Product){
+    this.selectedProduct = product;
+}
+  hideDetails(){
+    this.selectedProduct = null;
 }
 
 }
