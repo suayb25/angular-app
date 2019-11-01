@@ -4,10 +4,7 @@
     <div class="row">
         <div class="col-3">
                 <cart-summary></cart-summary>
-            <div class="list-group">
-                <button (click)="changeCategory()" class="list-group-item list-group-item-action">Tüm Kategoriler</button>
-                <button *ngFor="let c of categories" (click)="changeCategory(c)" class="list-group-item list-group-item-action" [class.active]="c==selectedCategory">{{ c.name }}</button>
-            </div>
+            <category-list (category)="getCategory($event)"></category-list>
         </div>
         <div class="col-9">
             <div class="row">
@@ -25,28 +22,8 @@
                         {{ selectedProducts.length }} tane ürün bulundu.
                     </div>
                 </div>
-                <ng-container *ngFor="let p of products">
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <img src="/assets/img/{{ p.imageUrl }}" alt="{{ p.name }}">
-                            <div class="card-body">
-                                <h4 class="cart-title">
-                                    <a href="">
-                                        {{ p.name }}
-                                    </a>
-                                </h4>
-                                <small class="text-muted">
-                                    <i class="fas fa-lira-sign"></i> {{ p.price }}
-                                </small>
-                            </div>
-                            <div class="card-footer text-center">
-                                <button class="btn btn-outline-primary btn-sm">Details</button>
-                                <button (click)="addProductToCart(p)" class="btn btn-outline-primary btn-sm ml3">Add to Card</button>
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
             </div>
+            <product-list [products]="products"></product-list>
             <div class="row mt-3">
                 <div class="col">
                     <div class="btn-group">
